@@ -41,6 +41,7 @@ export default function App() {
             color: "white",
             border: "1px solid white",
             padding: "5px 10px",
+            cursor: "pointer",
           }}
         >
           Sign / Sign Up
