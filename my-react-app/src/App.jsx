@@ -1,6 +1,8 @@
 import { useState } from "react";
-import TreatmentForm from "./components/TreatmentForm";
+import TreatmentForm from "./treatmentForm";
 import { initialTreatments } from "./treatmentData";
+import UWL from "./UWL.jpg";
+import { FaInstagram, FaWhatsapp, FaFacebook } from "react-icons/fa";
 
 export default function App() {
   const [treatments] = useState(initialTreatments);
@@ -17,58 +19,26 @@ export default function App() {
   });
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        margin: "0 auto",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      {/* 1. Navbar */}
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          background: "#333",
-          color: "white",
-          padding: "15px",
-        }}
-      >
-        <h2 style={{ margin: 0 }}>Patient Treatment</h2>
-        <button
-          style={{
-            background: "none",
-            color: "white",
-            border: "1px solid white",
-            padding: "5px 10px",
-            cursor: "pointer",
-          }}
-        >
-          Sign / Sign Up
-        </button>
+    <div className="app-container">
+      <nav className="navbar">
+        <h2 className="nav-title">Patient Treatment Management</h2>
+        <button className="nav-btn">Sign/SignUp</button>
       </nav>
-
-      {/* 2 & 3. Search Bar and Filter Dropdown */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "20px 0",
-          flexWrap: "wrap",
-          gap: "10px",
-        }}
-      >
+      <div>
+        <img src={UWL} className="img" alt="Uwl" />
+      </div>
+      <div className="controls-container">
         <input
           type="text"
+          className="search-input"
           placeholder="Search treatments..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ padding: "8px", flex: "1", minWidth: "200px" }}
         />
         <select
+          className="filter-select"
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          style={{ padding: "8px", minWidth: "150px" }}
         >
           <option value="All">All Types</option>
           <option value="Physiotherapy">Physiotherapy</option>
@@ -78,42 +48,40 @@ export default function App() {
         </select>
       </div>
 
-      {/* 4. Display Patient/Treatment Details */}
-      <div className="treatment-list">
-        <h3>Treatment Records</h3>
+      <div className="treatment-list-container">
+        <h3 className="section-title">Treatment Records</h3>
         {filteredTreatments.length > 0 ? (
           filteredTreatments.map((treatment) => (
-            <div
-              key={treatment.id}
-              style={{
-                border: "1px solid #ddd",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <strong>{treatment.name}</strong> ({treatment.type})
-              <p style={{ margin: "5px 0 0 0", fontSize: "0.9em" }}>
+            <div key={treatment.id} className="treatment-card">
+              <div className="treatment-header">
+                <strong>{treatment.name}</strong>
+                <span className="treatment-badge">{treatment.type}</span>
+              </div>
+              <p className="treatment-meta">
                 ID: {treatment.id} | Start Date: {treatment.date}
               </p>
             </div>
           ))
         ) : (
-          <p>No treatments found.</p>
+          <p className="no-results">No treatments found.</p>
         )}
       </div>
-
-      {/* 5 & 6. Treatment Form */}
       <TreatmentForm />
 
-      {/* 7. Footer */}
-      <footer
-        style={{
-          padding: "20px",
-          background: "#f1f1f1",
-          marginTop: "20px",
-        }}
-      >
-        <p>&copy; PTMI 2026</p>
+      <footer className="footer">
+        <h3 className="footer-h3">Help? 0123456789 </h3>
+        <div className="social-icons">
+          <a href="https://instagram.com" target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+          <a href="https://whatsapp.com" target="_blank" rel="noreferrer">
+            <FaWhatsapp />
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer">
+            <FaFacebook />
+          </a>
+        </div>
+        <p className="copyright">@CopyRight PTMI UWL</p>
       </footer>
     </div>
   );
