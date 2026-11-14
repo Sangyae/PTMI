@@ -21,10 +21,10 @@ export default function App() {
   return (
     <div className="app-container">
       <nav className="navbar">
-        <h2 className="nav-title">Patient Treatment Management</h2>
+        <h2 className="nav-title">PTMI UWL</h2>
         <button className="nav-btn">Sign/SignUp</button>
       </nav>
-      <div>
+      <div className="img-container">
         <img src={UWL} className="img" alt="Uwl" />
       </div>
       <div className="controls-container">
